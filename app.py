@@ -57,10 +57,6 @@ def cadastrar_produto():
     # Redireciona para a vitrine após o cadastro
     return redirect(url_for('exibir_produtos'))
 
-@app.route('/')
-def home():
-    return redirect(url_for('exibir_produtos'))
-
 # Página com vitrine dos produtos
 @app.route('/produtos')
 def exibir_produtos():
