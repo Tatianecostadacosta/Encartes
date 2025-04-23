@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Vitrine de Produtos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    
+    <div class="faixa-titulo">
+        <h2 class="titulo-texto">Lista de Produtos</h2>
+    </div>
+    
+
+    <table class="vitrine">
+        <thead>
+            <tr>
+                <th>Imagem</th>
+                <th>Nome</th>
+                <th>Preço</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for produto in produtos %}
+            <tr>
+                <td>
+                    <img src="{{ url_for('static', filename=produto.imagem_url) }}" alt="Imagem do produto" class="foto">
+                </td>
+                <td>{{ produto.nome }}</td>
+                <td>R$ {{ '%.2f' | format(produto.preco) }}</td>
+                <td>
+                    <a href="/editar/{{ produto.id }}" class="acao editar"><i class="fas fa-edit"></i></a>
+                    <a href="/excluir/{{ produto.id }}" class="acao excluir"><i class="fas fa-trash"></i></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="botao-centralizado">
+        <a href="/cadastrar" class="btn-cadastrar"><i class="fas fa-plus"></i> Cadastrar novo produto</a>
+    </div>
+</body>
+</html>
